@@ -1,0 +1,7 @@
+library(datasets)
+data(iris)
+mean(iris[iris$Species=="virginica","Sepal.Length"])
+species<-split(iris, iris$Species)
+mean(species$virginica$Sepal.Length)
+tapply(mtcars$mpg, mtcars$cyl, mean)
+with(mtcars, tapply(mpg, cyl, mean))

@@ -1,0 +1,168 @@
+\documentclass[a4paper,10pt,twoside,openright]{book}
+\usepackage[english]{babel}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{subfloat}
+%\usepackage{lineno}
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{light-gray}{gray}{0.9}
+\usepackage{afterpage}
+
+\usepackage{dcolumn}
+\newcolumntype{x}[1]{%
+>{\centering\arraybackslash}m{#1}}%
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}m{#1}}
+%\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}
+
+\usepackage[percent]{overpic}
+
+\newcommand{\nocontentsline}[3]{}
+\newcommand{\tocless}[2]{\bgroup\let\addcontentsline=\nocontentsline#1{#2}\egroup}
+
+\usepackage{multirow,bigdelim}
+\usepackage{enumerate}
+
+\usepackage[margin=7pt,font=small,labelfont=bf]{caption}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{lscape}
+
+%SOME SYMBOLS
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}%
+\newcommand{\xmark}{\ding{55}}%
+%MATHS
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{amsthm}
+ \newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\usepackage{slashed}
+
+\usepackage{listings}
+\lstset{language=C}
+
+\hyphenation{ca-lo-ri-me-ter ca-lo-ri-me-ters}%serve per la sillabazione: tra parentesi 
+
+\setlength{\headheight}{15pt}
+\usepackage{pict2e}
+
+\usepackage{eso-pic}
+
+\usepackage{url}
+%%%%bookmarksnumbered=false,% true means bookmarks in left window are numbered
+%%%%dvips,%ps2pdf,
+%%%%bookmarksopen=false, % true means only level 1 are displayed.
+%%%%breaklinks=true,linktocpage
+\usepackage[breaklinks=true,linktocpage,ocgcolorlinks,bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,colorlinks=true,linkcolor=webred]{hyperref}
+%\usepackage[bookmarks=true,bookmarksnumbered=false,bookmarksopen=false]{hyperref}
+%\usepackage[pdfborder={0 0 0 0}]{hyperref}
+\definecolor{webgreen}{rgb}{0, 0.5, 0} % less intense green
+\definecolor{webblue}{rgb}{0, 0, 0.5} % less intense blue
+\definecolor{webred}{rgb}{0.5, 0, 0} % less intense red
+
+\usepackage[hdivide={2cm, *, 2cm}, vscale=0.85]{geometry}
+\usepackage{chngpage}
+\usepackage{setspace}
+
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+
+
+%per avere l'indice senza numeri di pagina
+\makeatletter 
+ \newcommand{\cleantableofcontents}{% 
+   \clearpage\begingroup 
+   \let\ps@plain\ps@empty\pagestyle{empty}% 
+   \tableofcontents\clearpage\endgroup} 
+ \makeatother
+
+%per lo stile dei capitoli
+\makeatletter
+\def\thickhrulefill{\leavevmode \leaders \hrule height 1ex \hfill \kern \z@}
+%chstyle
+\def\@makechapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ 
+    {\raggedleft \reset@font
+      \scshape \@chapapp{} \thechapter\par\nobreak}%
+    \par\nobreak
+    \vspace*{30\p@}
+    \interlinepenalty\@M
+    {\begin{spacing}{1.1} \raggedright \huge \bfseries #1\end{spacing}}%
+    %{\doublespacing \raggedright \huge \bfseries #1}%
+    \par\nobreak
+    \hrulefill
+    \par\nobreak
+    \vskip 90\p@
+  }}
+\def\@makeschapterhead#1{%
+  \vspace*{10\p@}%
+  {\parindent \z@ 
+    {\raggedleft \reset@font
+      \scshape \vphantom{\@chapapp{} \thechapter}\par\nobreak}%
+    \par\nobreak
+    \vspace*{30\p@}
+    \interlinepenalty\@M
+    {\begin{spacing}{1.1} \raggedright \huge \bfseries #1\end{spacing}}%
+    \par\nobreak
+    \hrulefill
+    \par\nobreak
+    \vskip 90\p@
+  }}
+
+
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter. \ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\fancyhf{}
+\fancyhead[LO]{\small \nouppercase{\rightmark}}
+\fancyhead[RE]{\small \nouppercase{\leftmark}}
+\fancyhead[RO , LE]{ \thepage}
+
+
+
+%%%%%%%%%%%%%%%%%%
+%%% LAAAAAZYYYYY
+%%%%%%%%%%%%%%%%%%
+\def\bxii{B\ensuremath{_{12}}}
+
+
+
+\begin{document}
+
+
+\frontmatter
+
+
+\pdfbookmark[1]{Index}{Index}
+\cleantableofcontents
+
+\clearpage{\pagestyle{empty}\cleardoublepage}
+\mainmatter
+
+\input{00_datascientisttoolbox/notes01_01.tex}
+
+\input{01_rprogramming/notes02_01.tex}
+
+%\input{02_R_programming/notes02_01.tex}
+
+\appendix
+
+%\input{}
+
+\backmatter
+%\nocite{}
+%\phantomsection
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{unsrt}
+%\bibliographystyle{apalike}
+%\bibliography{biblioB12}
+%\clearpage{\pagestyle{empty}\cleardoublepage}
+
+\end{document}
