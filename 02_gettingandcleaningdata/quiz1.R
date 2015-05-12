@@ -14,6 +14,8 @@ dfx <- read.xlsx("./data/ngap.xlsx", sheetIndex=1, header=TRUE)
 dat<-dfx[18:23,7:15]
 sum(dat$Zip*dat$Ext,na.rm=T) 
 
-xmlf <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
+xmll <-"https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Frestaurants.xml"
+xmlf <- "./data/restaurants.xml"
+download.file(xmll, xmlf, method = "wget",quiet = TRUE)
 doc <- xmlTreeParse(xmlf, useInternal=TRUE)
 doc

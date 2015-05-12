@@ -32,3 +32,8 @@ names(jsonData)
 names(jsonData$owner)
 jsonData$owner$login
 myjson <- toJSON(iris, pretty=TRUE)
+
+
+require(data.table)
+DF <- data.frame()
+DT <- data.table()
