@@ -1,0 +1,132 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage[hdivide={2cm, *, 2cm}, vscale=0.85]{geometry}
+%\usepackage[backend=bibtex]{biblatex}
+\usepackage{listings}
+
+\title{Coursera - Get Data}
+\author{Antonella}
+\date{12-xx.05.2015}
+
+\begin{document}
+
+\maketitle
+
+\section{Download data}
+
+Check/set working dir
+
+<<>>=
+getwd()
+setwd("~/classes/coursera_jhu_datascience/datasciencecoursera/02_gettingandcleaningdata")
+@
+
+
+Check/create directories
+
+<<>>=
+if(!file.exists("data")) {
+  dir.create("data")
+}
+@
+
+Download from internet
+
+<<eval=FALSE>>=
+fileUrl <- "https://data.baltimorecity.gov/api/views/dz54-2aru/rows.csv?accessType=DOWNLOAD"
+download.file(fileUrl, destfile="./data/cameras.csv", method="curl")
+list.files("./data")
+dateDownloaded <- date()
+@
+
+If excel files\dots
+
+<<eval=FALSE>>=
+install.packages("xlsx")
+require(xlsx)
+dfx <- read.xlsx("./data/cameras.xlsx", sheetIndex=1, header=TRUE)
+@
+
+XML (eXtensible Markup Language)
+\begin{itemize}
+  \item \url{http://www.omegahat.org/RSXML/shortIntro.pdf}
+  \item \url{http://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/XML.pdf}
+\end{itemize}
+
+<<eval=FALSE>>=
+install.packages("XML")
+require(XML)
+@
+
+JSON (JavaScript Object Notation)
+\begin{itemize}
+  \item \url{http://www.r-bloggers.com/new-package-jsonlite-a-smarter-json-encoderdecoder/}
+  \item \url{http://cran.r-project.org/web/packages/jsonlite/vignettes/json-mapping.pdf}
+\end{itemize}
+
+
+<<eval=FALSE>>=
+install.packages("jsonlite")
+require(jsonlite)
+@
+
+
+\section{data.table}
+
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+<<>>=
+
+@
+
+\end{document}
