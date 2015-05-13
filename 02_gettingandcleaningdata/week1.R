@@ -37,3 +37,21 @@ myjson <- toJSON(iris, pretty=TRUE)
 require(data.table)
 DF <- data.frame()
 DT <- data.table()
+
+
+
+
+
+
+
+
+ucscDb <- dbConnect(MySQL(), user="genome", host="genome-mysql.cse.ucsc.edu")
+result <- dbGetQuery(ucscDb, "show databases;")
+dbDisconnect(ucscDb)
+
+
+
+
+
+
+

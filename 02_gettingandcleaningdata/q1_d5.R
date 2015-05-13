@@ -1,9 +1,9 @@
 require(data.table)
 furl = "https://d396qusza40orc.cloudfront.net/getdata%2Fdata%2Fss06pid.csv "
 download.file(furl, destfile="./data/pid.csv", method="curl")
-df <- read.csv("./data/pid.csv", header=TRUE)
-
-DT <- data.table(df)
+#df <- read.csv("./data/pid.csv", header=TRUE)
+#DT <- data.table(df)
+DT<-fread("./data/pid.csv", header=TRUE)
 
 system.time(DT[,mean(pwgtp15),by=SEX])
 system.time(tapply(DT$pwgtp15,DT$SEX,mean))

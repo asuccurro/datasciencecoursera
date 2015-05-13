@@ -58,8 +58,26 @@ XML (eXtensible Markup Language)
 
 <<eval=FALSE>>=
 install.packages("XML")
-require(XML)
 @
+<<>>=
+require(XML)
+xmlfileUrl<-"http://www.w3schools.com/xml/simple.xml"
+doc <- xmlTreeParse(xmlfileUrl, useInternal=TRUE)
+rootNode<- xmlRoot(doc)
+xmlName(rootNode)
+xpathSApply(rootNode,"//name",xmlValue)
+xpathSApply(rootNode,"//calories",xmlValue)
+@
+
+Can do similar on HTML files
+
+<<eval=FALSE>>=
+htmlfileUrl <- "http://espn.go.com/nfl/team/_/name/bal/baltimore-ravens"
+doch <- htmlTreeParse(htmlfileUrl, useInternal=TRUE)
+scores <- xpathSApply(doch,"//li[@class='score']", xmlValue)
+teams <- xpathSApply(doch,"//li[@class='team-name']", xmlValue)
+@
+
 
 JSON (JavaScript Object Notation)
 \begin{itemize}
@@ -70,26 +88,81 @@ JSON (JavaScript Object Notation)
 
 <<eval=FALSE>>=
 install.packages("jsonlite")
-require(jsonlite)
 @
-
+<<>>=
+require(jsonlite)
+jsonData<-fromJSON("https://api.github.com/users/jtleek/repos")
+myjson <- toJSON(iris, pretty=TRUE)
+names(jsonData)
+@
 
 \section{data.table}
 
+\url{http://stackoverflow.com/questions/13618488/what-you-can-do-with-data-frame-that-you-cant-in-data-table}
+
+Installation, when install.packages does not work straight-forward: from shell
+
+\begin{lstlisting}[language=bash]
+$ sudo apt-get install r-cran-plyr
+$ sudo apt-get install r-cran-reshape2
+\end{lstlisting}
+
+and then from R
+<<eval=FALSE>>=
+install.packages("data.table")
+@
+
+Operations on columns:
+<<>>=
+require(data.table)
+dt <- data.table(iris)
+dt[,mean(Sepal.Length),by=Species]
+dt[,Mean.Sepal.Length:=mean(Sepal.Length),by=Species]
+dt[,.N,by=Species]
+setorder(dt, "Sepal.Width")
+dt[,.N,by=Sepal.Width]
+@
+
+Keys are very useful to subset and merge tables
+<<>>=
+dt1 <- data.table(x=c('a', 'a', 'b', 'c'), y=1:4)
+dt2 <- data.table(x=c('a', 'b', 'b', 'd'), z=8:11)
+setkey(dt1,x)
+setkey(dt2,x)
+merge(dt1,dt2)
+@
+
+
+\section{mySQL}
+
+Installation, when install.packages does not work straight-forward: from shell
+
+\begin{lstlisting}[language=bash]
+$ sudo apt-get install mysql-server
+$ sudo apt-get install libmysqlclient-dev
+\end{lstlisting}
+
+and then from R
+<<eval=FALSE>>=
+install.packages("RMySQL")
+@
+
+
+E.g. the database \url{http://genome.ucsc.edu/} has \url{http://genome.ucsc.edu/goldenPath/help/mysql.html}
 
 <<>>=
 
 @
 
-<<>>=
+<<eval=FALSE>>=
 
 @
 
-<<>>=
+<<eval=FALSE>>=
 
 @
 
-<<>>=
+<<eval=FALSE>>=
 
 @
 
